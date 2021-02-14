@@ -2,14 +2,14 @@ package com.levelapps.projetomc.resources.exceptions;
 
 import java.io.Serializable;
 
-public class StandardErrors  implements Serializable{
-	
+public class StandardErrors implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer status;
 	private String msg;
-	private Long  timeStamp;
-	
+	private Long timeStamp;
+
 	public StandardErrors(Integer status, String msg, Long timeStamp) {
 		super();
 		this.status = status;
@@ -40,6 +40,5 @@ public class StandardErrors  implements Serializable{
 	public void setTimeStamp(Long timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-	
 
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.levelapps.projetomc.domain.Produto;
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
+public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 }

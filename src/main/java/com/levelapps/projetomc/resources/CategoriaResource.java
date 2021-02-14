@@ -11,15 +11,15 @@ import com.levelapps.projetomc.domain.Categoria;
 import com.levelapps.projetomc.services.CategoriaService;
 
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value = "/categorias")
 public class CategoriaResource {
-	
+
 	@Autowired
 	private CategoriaService categoriaService;
-			
-	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		
+
 		Categoria categoria = categoriaService.buscar(id);
 		return ResponseEntity.ok().body(categoria);
 

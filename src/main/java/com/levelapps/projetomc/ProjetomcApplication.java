@@ -1,5 +1,6 @@
 package com.levelapps.projetomc;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,20 @@ import com.levelapps.projetomc.domain.Cidade;
 import com.levelapps.projetomc.domain.Cliente;
 import com.levelapps.projetomc.domain.Endereco;
 import com.levelapps.projetomc.domain.Estado;
+import com.levelapps.projetomc.domain.Pagamento;
+import com.levelapps.projetomc.domain.PagamentoBoleto;
+import com.levelapps.projetomc.domain.PagamentoCartao;
+import com.levelapps.projetomc.domain.Pedido;
 import com.levelapps.projetomc.domain.Produto;
+import com.levelapps.projetomc.domain.enums.EstadoPagamento;
 import com.levelapps.projetomc.domain.enums.TipoCliente;
 import com.levelapps.projetomc.repositories.CategoriaRepository;
 import com.levelapps.projetomc.repositories.CidadeRepository;
 import com.levelapps.projetomc.repositories.ClienteRepository;
 import com.levelapps.projetomc.repositories.EnderecoRepository;
 import com.levelapps.projetomc.repositories.EstadoRepository;
+import com.levelapps.projetomc.repositories.PagamentoRepository;
+import com.levelapps.projetomc.repositories.PedidoRepository;
 import com.levelapps.projetomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -41,6 +49,11 @@ public class ProjetomcApplication implements CommandLineRunner {
 
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private PedidoRepository pedidoRepository;
+	
+	@Autowired PagamentoRepository pagamentoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetomcApplication.class, args);
@@ -55,7 +68,7 @@ public class ProjetomcApplication implements CommandLineRunner {
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 600.00);
 		Produto p3 = new Produto(null, "Mouse", 90.00);
-		
+
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
@@ -64,7 +77,7 @@ public class ProjetomcApplication implements CommandLineRunner {
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));		
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 
 		Estado est1 = new Estado(null, "Goiás");
 		Estado est2 = new Estado(null, "São Paulo");
@@ -89,6 +102,22 @@ public class ProjetomcApplication implements CommandLineRunner {
 
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2021 10:30"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("05/10/2021 07:30"), cli1, e2);
+		
+		Pagamento pagt1 = new PagamentoCartao(null, EstadoPagamento.QUITADO, ped1, 6);
+		ped1.setPagamento(pagt1);
+		
+		Pagamento pagt2 = new PagamentoBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2020 21:10"), null);
+		ped2.setPagamento(pagt2);
+		
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
+		pagamentoRepository.saveAll(Arrays.asList(pagt1, pagt2));
 
 	}
 
