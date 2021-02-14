@@ -55,16 +55,16 @@ public class ProjetomcApplication implements CommandLineRunner {
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 600.00);
 		Produto p3 = new Produto(null, "Mouse", 90.00);
+		
+		p1.getCategorias().addAll(Arrays.asList(cat1));
+		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p3.getCategorias().addAll(Arrays.asList(cat1));
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
-
-		p1.getCategorias().addAll(Arrays.asList(cat1));
-		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
-		p3.getCategorias().addAll(Arrays.asList(cat1));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));		
 
 		Estado est1 = new Estado(null, "Goiás");
 		Estado est2 = new Estado(null, "São Paulo");
