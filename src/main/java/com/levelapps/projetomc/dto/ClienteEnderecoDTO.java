@@ -2,13 +2,29 @@ package com.levelapps.projetomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.levelapps.projetomc.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteEnderecoDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Length(min = 5, max = 120, message = "O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
+	
+	@NotEmpty(message = "Preenchimento Obrigatório")
 	private String cpfOuCnpj;
+	
 	private Integer tipoCliente;
 	
 	private String logradouro;
