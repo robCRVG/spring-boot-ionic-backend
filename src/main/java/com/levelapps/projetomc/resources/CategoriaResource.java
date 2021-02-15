@@ -19,7 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.levelapps.projetomc.domain.Categoria;
 import com.levelapps.projetomc.dto.CategoriaDTO;
-import com.levelapps.projetomc.repositories.CategoriaRepository;
 import com.levelapps.projetomc.services.CategoriaService;
 
 @RestController

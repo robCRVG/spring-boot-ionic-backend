@@ -18,7 +18,7 @@ public class ItemPedido implements Serializable {
 	
 	@JsonIgnore
 	@EmbeddedId
-	private ItemPedidoPk id = new ItemPedidoPk();
+	private ItemPedidoPk id = new ItemPedidoPk();	
 
 	private ItemPedido() {
 

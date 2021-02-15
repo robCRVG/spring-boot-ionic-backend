@@ -39,7 +39,7 @@ public class Pagamento implements Serializable {
 		this.estadoPagemento = (estadoPagemento == null) ? null : estadoPagemento.getCod();
 		this.pedido = pedido;
 	}
-	
+	 
 	public Integer getId() {
 		return id;
 	}
