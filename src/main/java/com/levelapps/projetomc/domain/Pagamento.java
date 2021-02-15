@@ -36,10 +36,10 @@ public class Pagamento implements Serializable {
 	public Pagamento(Integer id, EstadoPagamento estadoPagemento, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estadoPagemento = estadoPagemento.getCod();
+		this.estadoPagemento = (estadoPagemento == null) ? null : estadoPagemento.getCod();
 		this.pedido = pedido;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
