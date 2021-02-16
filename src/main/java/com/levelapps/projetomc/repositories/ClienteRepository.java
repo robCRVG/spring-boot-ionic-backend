@@ -7,4 +7,6 @@ import com.levelapps.projetomc.domain.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+	
+	Cliente findByEmail(String email);
 }
